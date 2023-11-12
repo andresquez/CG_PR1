@@ -35,10 +35,21 @@ Planeta planeta4;
 Planeta planeta5;
 Planeta planeta6;
 
+
+
+
 struct Star {
     glm::vec3 position;
     uint8_t brightness;
 };
+
+struct NaveEspacial {
+    Uniform uniform;
+    std::vector<Vertex> vertex;
+    Shaders shader;
+};
+NaveEspacial quesOvni;
+
 
 std::array<double, WINDOW_WIDTH * WINDOW_HEIGHT> zBuffer;
 
@@ -139,6 +150,17 @@ glm::mat4 createModelMatrix(glm::vec3 matrixTranslation, glm::vec3 matrixRotatio
     glm::mat4 rotation = glm::rotate(glm::mat4(1), glm::radians((x += rotationSpeed) * radianSpeed), glm::vec3(0.0f, -1.0f, 0.0f)); // Solo en el eje vertical
     return translation * scale * rotation;
 }
+
+glm::mat4 createModelMatrix2(glm::vec3 matrixTranslation, glm::vec3 matrixRotation, glm::vec3 matrixScale) {
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::translate(model, matrixTranslation);
+    model = glm::rotate(model, glm::radians(matrixRotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+    model = glm::rotate(model, glm::radians(matrixRotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+    model = glm::rotate(model, glm::radians(matrixRotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+    model = glm::scale(model, matrixScale);
+    return model;
+}
+
 
 glm::mat4 createModelMatrixSol(glm::vec3 matrixTranslation, glm::vec3 matrixRotation, float radianSpeed) {
     static float rotationSpeed = 2.5f;  // Ajusta la velocidad de rotación aquí
@@ -268,6 +290,11 @@ void render(const std::vector<Vertex>& vertexArray,  const Uniform& uniform, int
                                     fragmentShaderf = shaderPlanet2(fragment);
                                     SDL_SetRenderDrawColor(renderer, fragmentShaderf.r, fragmentShaderf.g, fragmentShaderf.b, fragmentShaderf.a);
                                     break;
+                                case nave:
+                                    fragmentShaderf = shaderNave(fragment);
+                                    SDL_SetRenderDrawColor(renderer, fragmentShaderf.r, fragmentShaderf.g, fragmentShaderf.b, fragmentShaderf.a);
+
+                                    break;
                             }
 
                             SDL_RenderDrawPoint(renderer, x, WINDOW_HEIGHT-y);
@@ -309,6 +336,15 @@ int main(int argc, char* args[]) {
         return 1;
     }
 
+    std::vector<glm::vec3> verticesNave;
+    std::vector<glm::vec3> normalsNave;
+    std::vector<Face> facesNave;
+
+    if (!loadOBJ("models/quesOvni.obj", verticesNave, normalsNave, facesNave)) {
+        std::cerr << "Error loading spaceship OBJ file." << std::endl;
+        return 1;
+    }
+
     std::vector<Planeta> planetas;
 
     float rotation = 0.0f;
@@ -321,6 +357,8 @@ int main(int argc, char* args[]) {
     float moveSpeed = 0.4f;
 
     Camera camera;
+
+
 
     glm::vec3 cameraPosition(0.0f, 0.0f, 20.0f);
     glm::vec3 targetPosition(0.0f, 1.0f, 0.0f);
@@ -439,6 +477,22 @@ int main(int argc, char* args[]) {
         planeta6.uniform= uniform6;
         planeta6.vertex = &vertexArray;
         planeta6.shader = neptuno;
+
+
+        glm::vec3 relativeNavePosition = glm::vec3(0.0f, -0.05f, -0.25f);
+        // relativeNavePostion indica la posición relativa de la nave con respecto a la cámara
+        // los parametros que recibe relativeNavePosition son x, y, z
+        // actuaomente la nave se encuentra a 5 unidades de distancia de la camara en el eje z, para acercar la nave a la camara
+
+        glm::vec3 scale = glm::vec3(0.0125f);  // Cambia este valor según tus necesidades
+        quesOvni.uniform.model = createModelMatrix2(cameraPosition + relativeNavePosition, glm::vec3(xRotate, yRotate, 0.0f), scale);
+        quesOvni.uniform.view = createViewMatrix(cameraPosition, targetPosition, upVector);
+        quesOvni.uniform.projection = createProjectionMatrix();
+        quesOvni.uniform.viewport = createViewportMatrix();
+        quesOvni.vertex = setupVertexArray(verticesNave, normalsNave, facesNave);
+        quesOvni.shader = nave;
+
+
         
         planetas.push_back(planeta1);
         planetas.push_back(planeta2);
@@ -462,6 +516,8 @@ int main(int argc, char* args[]) {
         for(const Planeta& planeta : planetas){
             render(*planeta.vertex, planeta.uniform, planeta.shader);
         }
+        
+        render(quesOvni.vertex, quesOvni.uniform, quesOvni.shader);
 
         SDL_RenderPresent(renderer);
 

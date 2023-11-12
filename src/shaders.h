@@ -7,6 +7,8 @@
 #include "framebuffer.h"
 #include <cstdlib> 
 #pragma once
+#include <cstdlib>  // Necesario para usar rand()
+
 
 enum Shaders{
     sol,
@@ -15,6 +17,7 @@ enum Shaders{
     marte,
     jupiter,
     mercurio,
+    nave
 };
 
 struct Planeta{
@@ -203,6 +206,7 @@ Color shaderPlanet2(Fragment& fragment) {
 
     return fragment.color;
 }
+
 Color shaderPlanet3(Fragment& fragment) {
     // Color base del planeta (blanco)
     Color baseColorWhite(255, 255, 255);
@@ -242,4 +246,45 @@ Color shaderPlanet3(Fragment& fragment) {
     return fragment.color;
 }
 
+
+
+Color shaderNave(Fragment& fragment) {
+    // Base color for the star (cyan)
+    Color baseColorCyan(0, 255, 0);
+
+    // Coefficient of blending between the base color and noise
+    float mixFactor = 0.1; // Ajusta según tus preferencias
+
+    // Distance from the center for the gradient
+    float gradientFactor = 4.0 - length(fragment.original);
+
+    // Intensity to adjust brightness
+    float intensity = 1; // Ajusta según tus preferencias
+
+    // Blend between the base color and noise
+    Color starColor = baseColorCyan * (1.0f - mixFactor) * gradientFactor * intensity;
+
+    // Get UV coordinates of the fragment
+    float uvX = fragment.original.x;
+    float uvY = fragment.original.y;
+
+    // Parameters for noise
+    float noiseScale = 02.2; // Ajusta según tus preferencias
+
+    // Generate noise for the star texture
+    FastNoiseLite noiseGenerator;
+    noiseGenerator.SetNoiseType(FastNoiseLite::NoiseType_OpenSimplex2);
+
+    // Combine the two levels of noise
+    float noiseValue = (noiseGenerator.GetNoise((uvX + 500.0f) * 500.0f, (uvY + 3000.0f) * 500.0f) +
+                        noiseGenerator.GetNoise((uvX + 300.0f) * 500.0f, (uvY + 5000.0f) * 500.0f) * 0.2f) * 0.05f;
+
+    // Blend between the base color and noise based on the noise value
+    Color finalColor = starColor + (Color(1.5f, 1.0f, 1.0f) * noiseValue); // Ensure '1.0f' and correct data types
+
+    // Apply intensity and the depth of the fragment
+    fragment.color = finalColor * fragment.z * intensity;
+
+    return fragment.color;
+}
 
