@@ -952,7 +952,6 @@ CMakeFiles/SR.dir/src/main.cpp.o: /Users/andres/Desktop/Gráficas/CG_PR1/src/ma
   /opt/homebrew/Cellar/glm/0.9.9.8/include/glm/trigonometric.hpp \
   /opt/homebrew/Cellar/glm/0.9.9.8/include/glm/matrix.hpp \
   /opt/homebrew/Cellar/glm/0.9.9.8/include/glm/ext/matrix_transform.inl \
-  /Users/andres/Desktop/Gráficas/CG_PR1/src/face.h \
   /Users/andres/Desktop/Gráficas/CG_PR1/src/color.h \
   /Users/andres/Desktop/Gráficas/CG_PR1/src/fragment.h \
   /Users/andres/Desktop/Gráficas/CG_PR1/src/line.h \
@@ -1030,8 +1029,6 @@ CMakeFiles/SR.dir/src/main.cpp.o: /Users/andres/Desktop/Gráficas/CG_PR1/src/ma
 /Users/andres/Desktop/Gráficas/CG_PR1/src/fragment.h:
 
 /Users/andres/Desktop/Gráficas/CG_PR1/src/color.h:
-
-/Users/andres/Desktop/Gráficas/CG_PR1/src/face.h:
 
 /opt/homebrew/Cellar/glm/0.9.9.8/include/glm/ext/scalar_constants.inl:
 

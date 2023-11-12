@@ -5,8 +5,8 @@
 #include "color.h"
 #pragma once
 
-const int WINDOW_WIDTH = 766;
-const int WINDOW_HEIGHT = 400;
+const int WINDOW_WIDTH = 1000;
+const int WINDOW_HEIGHT = 600;
 
 std::array<std::array<Color, WINDOW_WIDTH>, WINDOW_HEIGHT> framebuffer;
 

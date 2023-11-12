@@ -3,16 +3,21 @@
 #include <glm/glm.hpp>
 #include <vector>
 #include <glm/ext/matrix_transform.hpp>
-#include "face.h"
 #include "color.h"
 #include "fragment.h"
 #include "line.h"
 #include "loadOBJ.h"
-#include "triangle.h"
 #include "uniform.h"
 #include "vertex.h"
 #include "shaders.h"
 #include "framebuffer.h"
+
+
+void triangle(const glm::vec3& A, const glm::vec3& B, const glm::vec3& C, SDL_Renderer* renderer) {
+    line(A, B, renderer);
+    line(B, C, renderer);
+    line(C, A, renderer);
+}
 
 float x = 3.14f / 3.0f;
 
@@ -311,7 +316,7 @@ void render(const std::vector<Vertex>& vertexArray,  const Uniform& uniform, int
 
 int main(int argc, char* args[]) {
     SDL_Init(SDL_INIT_VIDEO);
-    window = SDL_CreateWindow("Space Travel", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
+    window = SDL_CreateWindow("quesoSpace", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
     renderer = SDL_CreateRenderer(window, -1, 0);
 
     // Variables para el cálculo de FPS
@@ -354,7 +359,7 @@ int main(int argc, char* args[]) {
     float rotation5 = 0.0f;
     float xRotate = 0.0f;
     float yRotate = 0.0f;
-    float moveSpeed = 0.4f;
+    float moveSpeed = 0.2f;
 
     Camera camera;
 
@@ -480,12 +485,8 @@ int main(int argc, char* args[]) {
 
 
         glm::vec3 relativeNavePosition = glm::vec3(0.0f, -0.05f, -0.25f);
-        // relativeNavePostion indica la posición relativa de la nave con respecto a la cámara
-        // los parametros que recibe relativeNavePosition son x, y, z
-        // actuaomente la nave se encuentra a 5 unidades de distancia de la camara en el eje z, para acercar la nave a la camara
-
         glm::vec3 scale = glm::vec3(0.0125f);  // Cambia este valor según tus necesidades
-        quesOvni.uniform.model = createModelMatrix2(cameraPosition + relativeNavePosition, glm::vec3(xRotate, yRotate, 0.0f), scale);
+        quesOvni.uniform.model = createModelMatrix2(cameraPosition + relativeNavePosition, glm::vec3(xRotate, yRotate + 180.0f, 0.0f), scale);
         quesOvni.uniform.view = createViewMatrix(cameraPosition, targetPosition, upVector);
         quesOvni.uniform.projection = createProjectionMatrix();
         quesOvni.uniform.viewport = createViewportMatrix();
@@ -537,7 +538,7 @@ int main(int argc, char* args[]) {
             totalTime = 0.0;
 
             // Actualiza el título de la ventana con los FPS
-            std::string windowTitle = "Space Travel - FPS: " + std::to_string(fps);
+            std::string windowTitle = "quesoSpace - FPS: " + std::to_string(fps);
             SDL_SetWindowTitle(window, windowTitle.c_str());
         }
     }

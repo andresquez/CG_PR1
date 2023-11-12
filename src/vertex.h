@@ -2,8 +2,9 @@
 #include "glm/glm.hpp"
 #include <SDL2/SDL.h>
 #include <vector>
-#include "face.h"
 #include "color.h"
+#include <array>
+#include "loadOBJ.h"
 
 struct Vertex {
     glm::vec3 position;
