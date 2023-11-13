@@ -1,29 +1,39 @@
-# CG-LAB4
-Laboratory #4 - Computer Graphics
+# CG-PR1
+Project #1 - Computer Graphics
 
-## Images of the different plantes
+- [x] (0 a 30 puntos) [Criterio subjetivo] Por la estética de su sistema completo
+   - **Razón:** 30/30 si esta bello jejeje
 
-### Planeta Gaseoso
-![Planeta Gaseoso](./images/p_gaseoso.png)
+- [x] (0 a 20 puntos) [Criterio subjetivo] Por el rendimiento de la escena completa. No es necesario mantener 60 frames por segundo, es suficiente con que se sienta apropiado.
+   - **Razón:** Llega hasta a 220 fps, y siempre tiene como minimo 60 fps
 
-### Planeta Rocoso
-![Planeta Rocoso](./images/procoso.png)
+- [x] (0 a 50 puntos) 10 Puntos por cada planeta / estrella / luna en el sistema.
+   - **Razón:** 50/50, hay 4 planetas y 1 estrella
 
-### Estrella
-![Estrella](./images/p_estrella.png)
+- [ ] (0 a 10 puntos) 10 Puntos por implementar instant warping a diferentes puntos del sistema solar
+   - **Razón:** no hay
 
-### Planeta Random 1 Pelota de Tripa de Coche
-![Planeta Random 1](./images/p_random_1.png)
+- [ ] (0 a 10 puntos) 10 Puntos más si el efecto está animado
+   - **Razón:** no hay
 
-### Planeta Random 2 Mar con Islas de Panqueque y huevo estrellado
-![Planeta Random 2](./images/p_random_2.png)
+- [x] (0 a 30 puntos) 30 Puntos por renderizar una nave modelada por ustedes que siga a su cámara
+   - **Razón:** si hay nave y sigue a la camara hasta con efecto de rotación
 
+- [x] (0 a 10 puntos) 10 puntos por crear un skybox que muestre estrellas en el horizonte
+   - **Razón:** si hay, estrellas amarillas
 
-### Planeta Random 3 (Planeta congelado con volcanes rojos)
-![Planeta Random 3](./images/p_random_3.png)
+- [ ] (0 a 10 puntos) 10 puntos por implementar condicionales que eviten que la nave/cámara atraviese los elementos de su sistema solar
+   - **Razón:** no hay
 
-### To Choose a planet change the selectedPlanet value on shaders.h file
-```c++
-// Selected Planet
-int selectedPlanet = 0;
-```
+- [x] (0 a 40 puntos) 40 puntos por implementar movimiento 3D para la cámara
+   - **Razón:** se mueve arriba, abajo, adelante, atras, izquierda y derecha (6 movimientos), eso cuenta como 3D? solo falta diagonal que se puede apachando 2 teclas a la vez
+
+- [ ] (0 a 20 puntos) 20 puntos por renderizar las órbitas de los planetas
+   - **Razón:** no hay 
+
+   **Total de puntos: 180**
+
+## Showcase
+
+- [Video de Juego](https://youtu.be/MrbUTDu08Pc)
+- ![Show](./images/show.png)
