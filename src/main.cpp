@@ -359,7 +359,7 @@ int main(int argc, char* args[]) {
     float rotation5 = 0.0f;
     float xRotate = 0.0f;
     float yRotate = 0.0f;
-    float moveSpeed = 0.2f;
+    float moveSpeed = 0.5f;
 
     Camera camera;
 
@@ -509,9 +509,10 @@ int main(int argc, char* args[]) {
 
         // Dibuja las estrellas en el fondo
         for (const Star& star : stars) {
-            SDL_SetRenderDrawColor(renderer, star.brightness, star.brightness, star.brightness, 255);
+            SDL_SetRenderDrawColor(renderer, 255, 255, 0, star.brightness); // Amarillo
             SDL_RenderDrawPoint(renderer, star.position.x, star.position.y);
         }
+
 
         // Llamada a la función render para cada planeta
         for(const Planeta& planeta : planetas){

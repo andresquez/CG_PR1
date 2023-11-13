@@ -991,7 +991,6 @@ CMakeFiles/SR.dir/src/main.cpp.o: /Users/andres/Desktop/Gráficas/CG_PR1/src/ma
   /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/u8path.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/sstream \
-  /Users/andres/Desktop/Gráficas/CG_PR1/src/triangle.h \
   /Users/andres/Desktop/Gráficas/CG_PR1/src/uniform.h \
   /Users/andres/Desktop/Gráficas/CG_PR1/src/shaders.h \
   /Users/andres/Desktop/Gráficas/CG_PR1/src/FastNoiseLite.h \
@@ -1309,8 +1308,6 @@ CMakeFiles/SR.dir/src/main.cpp.o: /Users/andres/Desktop/Gráficas/CG_PR1/src/ma
 /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/set_intersection.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/ranges_search.h:
-
-/Users/andres/Desktop/Gráficas/CG_PR1/src/triangle.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/uniform_random_bit_generator.h:
 
