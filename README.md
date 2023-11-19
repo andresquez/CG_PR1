@@ -1,6 +1,26 @@
 # CG-PR1
 Project #1 - Computer Graphics
 
+# Explicación
+- El proyecto consiste en la renderización en tiempo real de un sistema solar de 1 estrella y 4 planetas. Los cuerpos celestes están alineados en un plano eclíptico.
+- Los planetas tienen traslación y rotación propia.
+- Se implementó una nave espacial que sigue a la cámara, y la cámara se puede mover en 6 direcciones (arriba, abajo, adelante, atras, izquierda y derecha).
+- Se implementó un skybox que muestra estrellas en el horizonte.
+
+# Controles
+- wasd: mover la nave
+- flechas: mover la camara
+
+# Lenguaje
+- C++
+
+# Instrucciones para correr
+- Configurar con `zsh configure.sh`
+- Compilar con `zsh build.sh`
+- Correr con `zsh run.sh`
+
+
+# Rúbrica
 - [x] (0 a 30 puntos) [Criterio subjetivo] Por la estética de su sistema completo
    - **Razón:** 30/30 si esta bello jejeje
 
