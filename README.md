@@ -37,3 +37,5 @@ Project #1 - Computer Graphics
 
 - [Video de Juego](https://youtu.be/MrbUTDu08Pc)
 - ![Show](./images/show.png)
+- ![Show2](./images/show2.png)
+
